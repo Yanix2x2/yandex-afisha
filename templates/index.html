@@ -6,12 +6,12 @@
   <meta charset="utf-8">
   <title>Куда пойти — Москва глазами Артёма</title>
 
-  <link rel="shortcut icon" href="{% static 'affiche/favicon.png' %}" type="image/png">
+  <link rel="shortcut icon" href="{% static 'favicon.png' %}" type="image/png">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
-  <link rel="stylesheet" href="{% static 'affiche/leaflet-sidebar.css' %}"/>
+  <link rel="stylesheet" href="{% static 'leaflet-sidebar.css' %}"/>
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   <link rel="stylesheet" href="https://unpkg.com/@ansur/leaflet-pulse-icon@0.1.1/dist/L.Icon.Pulse.css">
@@ -52,7 +52,7 @@
           "properties": {
             "title": "«Легенды Москвы",
             "placeId": "moscow_legends",
-            "detailsUrl": "{% static 'affiche/places/moscow_legends.json' %}"
+            "detailsUrl": "{% static 'places/places/moscow_legends.json' %}"
           }
         },
         {
@@ -64,7 +64,7 @@
           "properties": {
             "title": "Крыши24.рф",
             "placeId": "roofs24",
-            "detailsUrl": "{% static 'affiche/places/roofs24.json' %}"
+            "detailsUrl": "{% static 'places/places/roofs24.json' %}"
           }
         }
       ]
@@ -141,7 +141,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js" integrity="sha256-ngFW3UnAN0Tnm76mDuu7uUtYEcG3G5H1+zioJw3t+68=" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/@ansur/leaflet-pulse-icon@0.1.1/dist/L.Icon.Pulse.js"></script>
 
-  <script src="{% static 'affiche/leaflet-sidebar.js' %}"></script>
+  <script src="{% static 'leaflet-sidebar.js' %}"></script>
 
   <script>
     var map = L.map('map');
