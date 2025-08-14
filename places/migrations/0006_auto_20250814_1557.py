@@ -2,7 +2,7 @@
 
 import os
 import json
-from django.db import migrations, models
+from django.db import migrations
 from django.core.files.base import ContentFile
 
 import requests
@@ -35,14 +35,9 @@ def load_pictures(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("places", "0004_image"),
+        ("places", "0005_image_serial_number_alter_image_picture"),
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='Image',
-            name='serial_number',
-            field=models.IntegerField("Порядковый номер", default=0),
-        ),
         migrations.RunPython(load_pictures),
     ]

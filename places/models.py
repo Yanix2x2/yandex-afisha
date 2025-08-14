@@ -14,7 +14,7 @@ class Place(models.Model):
 
 class Image(models.Model):
     place = models.ForeignKey(Place, on_delete=models.CASCADE, related_name='images')
-    picture = models.ImageField("Картинка", upload_to="media/", blank=True)
+    picture = models.ImageField("Картинка", upload_to="", blank=True)
     serial_number = models.IntegerField("Порядковый номер", default=0)
 
     def __str__(self):
