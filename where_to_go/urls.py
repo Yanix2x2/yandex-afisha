@@ -4,10 +4,12 @@ from django.contrib import admin
 from django.urls import path
 
 from places import views
+from places.views import get_place
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.show_affiches),
+    path('', views.index),
+    path('place/<int:place_id>/', get_place, name='get_place'),
 ]
 
 if settings.DEBUG:
