@@ -19,9 +19,9 @@ def get_place(request, place_id) -> JsonResponse:
         "imgs": image_urls,
         "description_short": place.description_short,
         "description_long": place.description_long,
-        "coordinates": {
+        "coordinates": { 
             "lng": place.longitude,
-            "lat": place.latitude
+            "lat": place.latitude,
         }
     }
 
