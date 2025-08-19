@@ -45,6 +45,6 @@ python manage.py runserver
 - `DEBUG` — дебаг-режим. Поставьте `True`, чтобы увидеть отладочную информацию в случае ошибки.
 - `SECRET_KEY` — секретный ключ проекта
 - `ALLOWED_HOSTS` — см [документацию Django](https://docs.djangoproject.com/en/3.1/ref/settings/#allowed-hosts).
-- `DATABASE_FILEPATH` — Путь к базе данных, например: `BASE_DIR / "db.sqlite3"`. Больше информации в [документации](https://github.com/jacobian/dj-database-url)
+- `DATABASE_PATH` — Путь к базе данных, например: `BASE_DIR / "db.sqlite3"`. Больше информации в [документации](https://github.com/jacobian/dj-database-url)
 
     Это позволяет легко переключаться между базами данных: PostgreSQL, MySQL, SQLite — без разницы, нужно лишь подставить нужный адрес.
