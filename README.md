@@ -48,3 +48,34 @@ python manage.py runserver
 - `DATABASE_PATH` — Путь к базе данных, например: `BASE_DIR / "db.sqlite3"`. Больше информации в [документации](https://github.com/jacobian/dj-database-url)
 
     Это позволяет легко переключаться между базами данных: PostgreSQL, MySQL, SQLite — без разницы, нужно лишь подставить нужный адрес.
+
+## Команда загрузки данных мест из JSON
+
+Команда `load_place` предназначена для загрузки данных о местах и их изображениях в базу данных из JSON-файла, доступного по URL.
+
+```bash
+python manage.py load_place <URL_JSON_файла>
+```
+
+JSON-файл должен содержать следующую структуру:
+
+```json
+{
+  "title": "Название места",
+  "description_short": "Краткое описание",
+  "description_long": "Полное описание с HTML-разметкой",
+  "coordinates": {
+    "lng": "долгота",
+    "lat": "широта"
+  },
+  "imgs": [
+    "https://example.com/images/image1.jpg",
+    "https://example.com/images/image2.jpg"
+  ]
+}
+```
+
+При успешном выполнении выводится сообщение:
+```text
+Successfully loaded place "Название места"
+```
