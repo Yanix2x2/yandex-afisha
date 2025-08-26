@@ -14,8 +14,13 @@ class Place(models.Model):
 
 
 class Image(models.Model):
-    place = models.ForeignKey(Place, on_delete=models.CASCADE, related_name='images')
-    picture = models.ImageField("Картинка", upload_to="", blank=True, null=True)
+    place = models.ForeignKey(
+        Place,
+        on_delete=models.CASCADE,
+        related_name='images',
+        verbose_name='Место'
+    )
+    picture = models.ImageField("Картинка", upload_to="")
     serial_number = models.PositiveIntegerField("Порядковый номер", default=0)
 
     class Meta:
