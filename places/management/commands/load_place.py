@@ -28,9 +28,10 @@ class Command(BaseCommand):
 
         for img_url in raw_place['imgs']:
             response = requests.get(img_url)
+            response.raise_for_status()
             img_name = img_url.split('/')[-1]
-            image = Image(place=place)
-            image.picture.save(img_name, ContentFile(response.content), save=True)
+            image = Image.objects.create(place=place)
+            image.picture.save(img_name, ContentFile(response.content))
 
         msg = self.style.SUCCESS(f'Successfully loaded place "{place.title}"')
         self.stdout.write(msg)
