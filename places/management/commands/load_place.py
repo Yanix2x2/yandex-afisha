@@ -20,8 +20,8 @@ class Command(BaseCommand):
 
         place, created = Place.objects.get_or_create(
             title=item['title'],
-            description_short=item['description_short'],
-            description_long=item['description_long'],
+            short_description=item['description_short'],
+            long_description=item['description_long'],
             longitude=float(item['coordinates']['lng']),
             latitude=float(item['coordinates']['lat'])
         )
