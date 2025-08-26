@@ -16,17 +16,17 @@ class Command(BaseCommand):
         json_url = options['json_url']
         response = requests.get(json_url)
         response.raise_for_status()
-        item = json.loads(response.text)
+        raw_place = json.loads(response.text)
 
         place, created = Place.objects.get_or_create(
-            title=item['title'],
-            short_description=item['description_short'],
-            long_description=item['description_long'],
-            longitude=float(item['coordinates']['lng']),
-            latitude=float(item['coordinates']['lat'])
+            title=raw_place['title'],
+            short_description=raw_place['description_short'],
+            long_description=raw_place['description_long'],
+            longitude=float(raw_place['coordinates']['lng']),
+            latitude=float(raw_place['coordinates']['lat'])
         )
 
-        for img_url in item['imgs']:
+        for img_url in raw_place['imgs']:
             response = requests.get(img_url)
             img_name = img_url.split('/')[-1]
             image = Image(place=place)
