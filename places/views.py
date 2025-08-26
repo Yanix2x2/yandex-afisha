@@ -7,7 +7,7 @@ from places.models import Place
 
 def get_place(request, place_id) -> JsonResponse:
     place = get_object_or_404(
-        Place.objects.prefetch_related('images'),
+        Place.objects.prefetch_related("images"),
         id=place_id
         )
 
@@ -25,7 +25,7 @@ def get_place(request, place_id) -> JsonResponse:
         }
     }
 
-    return JsonResponse(properties, json_dumps_params={'ensure_ascii': False, 'indent': 4})
+    return JsonResponse(properties, json_dumps_params={"ensure_ascii": False, "indent": 4})
 
 
 def index(request):
@@ -43,7 +43,7 @@ def index(request):
                 "properties": {
                     "title": place.title,
                     "placeId": place.id,
-                    "detailsUrl": reverse('get_place', args=[place.id])
+                    "detailsUrl": reverse("get_place", args=[place.id])
                 }
             }
         )
@@ -57,4 +57,4 @@ def index(request):
         "places_geojson": places_geojson
     }
 
-    return render(request, 'index.html', context)
+    return render(request, "index.html", context)
