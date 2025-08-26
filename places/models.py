@@ -25,6 +25,9 @@ class Image(models.Model):
 
     class Meta:
         ordering = ["serial_number"]
+        indexes = [
+            models.Index(fields=['place', 'serial_number']),
+        ]
 
     def __str__(self):
         return f'{self.serial_number} {self.place.title}'

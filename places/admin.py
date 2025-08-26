@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.utils.safestring import mark_safe
+from django.utils.html import format_html
 from adminsortable2.admin import SortableAdminBase, SortableInlineAdminMixin
 
 from .models import Place, Image
@@ -13,7 +13,11 @@ class ImageInlineAdmin(SortableInlineAdminMixin, admin.TabularInline):
 
     def image_preview(self, obj):
         if obj.picture:
-            return mark_safe(f'<img src="{obj.picture.url}" style="max-height: 200px;" />')
+            return format_html(
+                '<img src="{}" style="max-height: 200px;" />',
+                obj.picture.url
+            )
+
         return "No image"
     
     image_preview.short_description = "Preview"
