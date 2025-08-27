@@ -9,6 +9,14 @@ class Place(models.Model):
     longitude = models.FloatField("Долгота")
     latitude = models.FloatField("Широта")
 
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                    fields=['title', 'longitude', 'latitude'],
+                    name='unique_title_coordinates'
+                ),
+        ]
+
     def __str__(self):
         return self.title
 

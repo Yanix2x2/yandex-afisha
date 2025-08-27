@@ -1,5 +1,6 @@
 from django.core.management.base import BaseCommand
 from django.core.files.base import ContentFile
+from django.db import IntegrityError
 import requests
 import json
 
@@ -18,13 +19,20 @@ class Command(BaseCommand):
         response.raise_for_status()
         raw_place = json.loads(response.text)
 
-        place, created = Place.objects.get_or_create(
-            title=raw_place['title'],
-            short_description=raw_place['description_short'],
-            long_description=raw_place['description_long'],
-            longitude=float(raw_place['coordinates']['lng']),
-            latitude=float(raw_place['coordinates']['lat'])
-        )
+        try:
+            place, created = Place.objects.get_or_create(
+                title=raw_place['title'],
+                longitude=float(raw_place['coordinates']['lng']),
+                latitude=float(raw_place['coordinates']['lat']),
+
+                defaults={
+                    'short_description': raw_place['description_short'],
+                    'long_description': raw_place['description_long'],
+                }
+            )
+
+        except IntegrityError as error:
+            print(f"IntegrityError for place {raw_place['title']}: {error}")
 
         for img_url in raw_place['imgs']:
             response = requests.get(img_url)
