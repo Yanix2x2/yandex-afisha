@@ -1,9 +1,12 @@
-from django.core.management.base import BaseCommand
-from django.core.files.base import ContentFile
-from django.db import IntegrityError
+import json
+import sys
+from time import sleep
+
 import requests
 from requests.exceptions import HTTPError, ConnectionError
-import json
+from django.core.files.base import ContentFile
+from django.core.management.base import BaseCommand
+from django.db import IntegrityError
 
 from places.models import Place, Image
 
@@ -44,13 +47,13 @@ class Command(BaseCommand):
                 image = Image.objects.create(place=place)
                 image.picture.save(img_name, ContentFile(response.content))
 
-            except HTTPError as http_err:
-                print(f"HTTP ошибка при загрузке {img_url}: {http_err}")
+            except HTTPError as error:
+                sys.stderr.write(f"HTTP ошибка при загрузке {img_url}: {error}")
                 continue
 
-            except ConnectionError as conn_err:
-                print(f"Ошибка соединения при загрузке {img_url}: {conn_err}")
-                continue
+            except ConnectionError as error:
+                sys.stderr.write(f"Ошибка соединения при загрузке {img_url}: {error}")
+                sleep(10)
 
         msg = self.style.SUCCESS(f'Successfully loaded place "{place.title}"')
         self.stdout.write(msg)
