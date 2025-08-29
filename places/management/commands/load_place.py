@@ -44,8 +44,10 @@ class Command(BaseCommand):
                 response.raise_for_status()
 
                 img_name = img_url.split('/')[-1]
-                image = Image.objects.create(place=place)
-                image.picture.save(img_name, ContentFile(response.content))
+                Image.objects.create(
+                    place=place,
+                    picture=ContentFile(response.content, name=img_name)
+                )
 
             except HTTPError as error:
                 sys.stderr.write(f"HTTP ошибка при загрузке {img_url}: {error}")
