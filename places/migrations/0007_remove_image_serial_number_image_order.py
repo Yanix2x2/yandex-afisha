@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("places", "0006_auto_20250814_1557"),
+        ("places", "0005_image_serial_number_alter_image_picture"),
     ]
 
     operations = [
